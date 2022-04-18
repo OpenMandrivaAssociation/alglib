@@ -1,3 +1,6 @@
+# For debugsource package
+%global _empty_manifest_terminate_build 0
+
 %define major	3
 %define libname	%mklibname %{name} %{major}
 %define devname	%mklibname %{name} -d
@@ -7,7 +10,7 @@
 Summary:	A numerical analysis and data processing library
 Name:		alglib
 Version:	3.18.0
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	GPLv2+
 URL:		https://www.alglib.net/
@@ -109,11 +112,14 @@ sed -i 's|\r||g' manual.cpp.html
 
 
 %build
-# disable FMA support to get it pass all tests
+# FIXME: disable FMA support to get it pass all tests
 %ifarch aarch64
 export CXXFLAGS="%{optflags} -ffp-contract=off"
 export CFLAGS="%{optflags} -ffp-contract=off"
 %endif
+#FIXME: without this link fails on znver1
+export CXXFLAGS="$CXXFLAGS -O2"
+
 %cmake \
 	-G Ninja
 %ninja_build
