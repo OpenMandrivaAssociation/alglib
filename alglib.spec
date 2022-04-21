@@ -1,5 +1,5 @@
 #FIXME: without this link fails on znver1
-%ifnarch %{ix86}
+%ifarch %{ix86}
 %global optflags %{optflags} -O2
 %endif
 
