@@ -1,5 +1,7 @@
-# For debugsource package
-%global _empty_manifest_terminate_build 0
+#FIXME: without this link fails on znver1
+%ifnarch %{ix86}
+%global optflags %{optflags} -O2
+%endif
 
 %define major	3
 %define libname	%mklibname %{name} %{major}
@@ -10,7 +12,7 @@
 Summary:	A numerical analysis and data processing library
 Name:		alglib
 Version:	3.18.0
-Release:	2
+Release:	3
 Group:		System/Libraries
 License:	GPLv2+
 URL:		https://www.alglib.net/
@@ -117,8 +119,6 @@ sed -i 's|\r||g' manual.cpp.html
 export CXXFLAGS="%{optflags} -ffp-contract=off"
 export CFLAGS="%{optflags} -ffp-contract=off"
 %endif
-#FIXME: without this link fails on znver1
-export CXXFLAGS="$CXXFLAGS -O2"
 
 %cmake \
 	-G Ninja
