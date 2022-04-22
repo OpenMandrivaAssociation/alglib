@@ -1,8 +1,3 @@
-#FIXME: without this link fails on znver1
-%ifarch znver1
-%global optflags %{optflags} -O2
-%endif
-
 %define major	3
 %define libname	%mklibname %{name} %{major}
 %define devname	%mklibname %{name} -d
@@ -119,6 +114,9 @@ sed -i 's|\r||g' manual.cpp.html
 export CXXFLAGS="%{optflags} -ffp-contract=off"
 export CFLAGS="%{optflags} -ffp-contract=off"
 %endif
+#FIXME: without this link fails on znver1
+export CXXFLAGS="$CXXFLAGS -O2"
+export CFLAGS="$CFLAGS -O2"
 
 %cmake \
 	-G Ninja
