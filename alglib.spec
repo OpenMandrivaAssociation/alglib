@@ -1,13 +1,14 @@
 %define major	3
-%define libname	%mklibname %{name} %{major}
+%define oldlibname %{mklibname %{name} %{major}}
+%define libname	%mklibname %{name}
 %define devname	%mklibname %{name} -d
 
 %global soversion %(echo %{version}|cut -d. -f1,4)
 
 Summary:	A numerical analysis and data processing library
 Name:		alglib
-Version:	3.18.0
-Release:	3
+Version:	3.19.0
+Release:	1
 Group:		System/Libraries
 License:	GPLv2+
 URL:		https://www.alglib.net/
@@ -38,6 +39,7 @@ ALGLIB features include:
 %package -n %{libname}
 Summary:	Shared %{name} library
 Group:		System/Libraries
+Obsoletes:	%{oldlibname}
 
 %description -n %{libname}
 ALGLIB is a cross-platform numerical analysis and data mining library.
