@@ -7,7 +7,7 @@
 
 Summary:	A numerical analysis and data processing library
 Name:		alglib
-Version:	3.19.0
+Version:	3.20.0
 Release:	1
 Group:		System/Libraries
 License:	GPLv2+
