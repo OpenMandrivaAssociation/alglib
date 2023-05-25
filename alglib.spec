@@ -117,9 +117,9 @@ export CXXFLAGS="%{optflags} -ffp-contract=off"
 export CFLAGS="%{optflags} -ffp-contract=off"
 %endif
 #FIXME: without this link fails on znver1
-%global _empty_manifest_terminate_build 0
-#export CXXFLAGS="$CXXFLAGS -O2"
-#export CFLAGS="$CFLAGS -O2"
+#global _empty_manifest_terminate_build 0
+export CXXFLAGS="$CXXFLAGS -O2"
+export CFLAGS="$CFLAGS -O2"
 
 %cmake \
 	-G Ninja
