@@ -1,4 +1,4 @@
-%define major	3
+%define major	4
 %define oldlibname %{mklibname %{name} %{major}}
 %define libname	%mklibname %{name}
 %define devname	%mklibname %{name} -d
@@ -7,7 +7,7 @@
 
 Summary:	A numerical analysis and data processing library
 Name:		alglib
-Version:	3.20.0
+Version:	4.00.0
 Release:	1
 Group:		System/Libraries
 License:	GPLv2+
@@ -118,8 +118,8 @@ export CFLAGS="%{optflags} -ffp-contract=off"
 %endif
 #FIXME: without this link fails on znver1
 %global _empty_manifest_terminate_build 0
-export CXXFLAGS="$CXXFLAGS -O2"
-export CFLAGS="$CFLAGS -O2"
+#export CXXFLAGS="$CXXFLAGS -O2"
+#export CFLAGS="$CFLAGS -O2"
 
 %cmake \
 	-G Ninja
