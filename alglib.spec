@@ -1,3 +1,15 @@
+#FIXME: without this link fails on znver1
+%ifarch %{ix86}
+%global _empty_manifest_terminate_build 0
+%global optflags %{optflags} -O2
+%endif
+
+#FIXME: disable FMA support to get it pass all tests
+%ifarch aarch64
+export CXXFLAGS="%{optflags} -ffp-contract=off"
+export CFLAGS="%{optflags} -ffp-contract=off"
+%endif
+
 %define major	4
 %define oldlibname %{mklibname %{name} %{major}}
 %define libname	%mklibname %{name}
@@ -111,16 +123,6 @@ sed -i 's|\r||g' manual.cpp.html
 
 
 %build
-# FIXME: disable FMA support to get it pass all tests
-%ifarch aarch64
-export CXXFLAGS="%{optflags} -ffp-contract=off"
-export CFLAGS="%{optflags} -ffp-contract=off"
-%endif
-#FIXME: without this link fails on znver1
-%global _empty_manifest_terminate_build 0
-export CXXFLAGS="$CXXFLAGS -O2"
-export CFLAGS="$CFLAGS -O2"
-
 %cmake \
 	-G Ninja
 %ninja_build
