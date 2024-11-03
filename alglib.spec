@@ -19,7 +19,7 @@ export CFLAGS="%{optflags} -ffp-contract=off"
 
 Summary:	A numerical analysis and data processing library
 Name:		alglib
-Version:	4.01.0
+Version:	4.03.0
 Release:	1
 Group:		System/Libraries
 License:	GPLv2+
